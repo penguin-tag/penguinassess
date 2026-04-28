@@ -577,7 +577,8 @@
             { id: "t8", name: "MD Yasin Mamun, BP", imageurl: "Yasin.jpg" },
             { id: "t9", name: "Niaz Morshed Faysal, PM", imageurl: "Niaz.jpg" },
             { id: "t10", name: "SM Moniruzzaman, Hulkenstein", imageurl: "Monir.jpg" },
-            { id: "t11", name: "Javed Jimi, Sikho", imageurl: "Jimi.jpg" }
+            { id: "t11", name: "Javed Jimi, Sikho", imageurl: "Jimi.jpg" },
+            { id: "t11", name: "ASM Anas Ferdous, Hulkenstein", imageurl: "Anas.jpg" }
         ];
         return attachSavedRatingsToTeachers(teachers, subjectId, chapterId);
     }
@@ -628,7 +629,8 @@
             { id: "t7", name: "Mehedi Hasan Hridoy, BP", imageurl: "Hridoy.jpg" },
             { id: "t8", name: "Dr Abrar Hamim, Master Biology", imageurl: "Hamim.jpg" },
             { id: "t9", name: "Dr Rahat, DMC Station", imageurl: "Rahat.jpg" },
-            { id: "t10", name: "Dr Fahad, FAB", imageurl: "Fahad.jpg" }
+            { id: "t10", name: "Dr Fahad, FAB", imageurl: "Fahad.jpg" },
+            { id: "t11", name: "ASM Anas Ferdous, Hulkenstein", imageurl: "Anas.jpg" }
         ];
         return attachSavedRatingsToTeachers(teachers, subjectId, chapterId);
     }
@@ -846,11 +848,14 @@
     // Initialize
     subjectsCatalog = buildSubjectsCatalog();
     
-    loadRatingsFromCloud().then(() => {
-        renderSubjects();
-        renderChapters();
-        renderTeachers();
-    });
+    // Render instantly first
+    renderSubjects();
+    renderChapters();
+    renderTeachers();
+
+    // Then load cloud in background
+    loadRatingsFromCloud();
+
     
     document.getElementById('resetAllBtn').addEventListener('click', resetAll);
     document.getElementById('backToSubjects').addEventListener('click', backToSubjects);
