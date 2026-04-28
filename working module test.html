@@ -846,11 +846,14 @@
     // Initialize
     subjectsCatalog = buildSubjectsCatalog();
     
-    loadRatingsFromCloud().then(() => {
-        renderSubjects();
-        renderChapters();
-        renderTeachers();
-    });
+    // Render instantly first
+    renderSubjects();
+    renderChapters();
+    renderTeachers();
+
+    // Then load cloud in background
+    loadRatingsFromCloud();
+
     
     document.getElementById('resetAllBtn').addEventListener('click', resetAll);
     document.getElementById('backToSubjects').addEventListener('click', backToSubjects);
